@@ -185,5 +185,10 @@ namespace Texty
             }
             IsFileOpened(false);
         }
+
+        private void statusBarToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            statusStrip1.Visible = (sender as ToolStripMenuItem).Checked;
+        }
     }
 }
