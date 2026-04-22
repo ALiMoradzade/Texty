@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Win32;
 using System.Windows.Forms;
 
 namespace Texty
@@ -16,6 +17,7 @@ namespace Texty
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            if (!RegFont.IsExisted) RegFont.Write();
             Application.Run(new TextyForm());
         }
     }

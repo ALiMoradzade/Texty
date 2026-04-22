@@ -20,6 +20,9 @@ namespace Texty
         public TextyForm()
         {
             InitializeComponent();
+            Font font = RegFont.Read();
+            fontDialog1.Font = font;
+            richTextBox1.Font = font;
         }
 
         public void SetTextZoomFactorStatus()
@@ -243,6 +246,15 @@ namespace Texty
             
             richTextBox1.Text = richTextBox1.Text.Insert(richTextBox1.SelectionStart, value);
             richTextBox1.SelectionStart = selectionLen;
+        }
+
+        private void fontToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (fontDialog1.ShowDialog() == DialogResult.OK)
+            {
+                richTextBox1.Font = fontDialog1.Font;
+                RegFont.Write(fontDialog1.Font);
+            }
         }
     }
 }
