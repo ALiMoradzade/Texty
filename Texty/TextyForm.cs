@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
+using Microsoft.Win32;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Texty
@@ -222,6 +224,25 @@ namespace Texty
         {
             richTextBox1.ZoomFactor -= zoom;
             SetTextZoomFactorStatus();
+        }
+
+        private void timeDateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DateTime systemDateTime = DateTime.Now;
+            PersianCalendar persianCalendar = new PersianCalendar();
+
+            string persianYear = persianCalendar.GetYear(systemDateTime).ToString("0000");
+            string persianMonth = persianCalendar.GetMonth(systemDateTime).ToString("00");
+            string persianDayOfMonth = persianCalendar.GetDayOfMonth(systemDateTime).ToString("00");
+            string solarHijriDate = $"{persianYear}/{persianMonth}/{persianDayOfMonth}";
+
+            string gregorianDate = $"{systemDateTime.Year:0000}/{systemDateTime.Month:00}/{systemDateTime.Day:00}";
+
+            string value = $"\r\n{solarHijriDate}\r\n{gregorianDate}";
+            int selectionLen = richTextBox1.SelectionStart + value.Replace("\r\n","x").Length;
+            
+            richTextBox1.Text = richTextBox1.Text.Insert(richTextBox1.SelectionStart, value);
+            richTextBox1.SelectionStart = selectionLen;
         }
     }
 }

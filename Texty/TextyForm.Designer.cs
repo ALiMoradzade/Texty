@@ -42,6 +42,8 @@ namespace Texty
             this.findToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.replaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.dateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.fontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.zoomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,10 +57,10 @@ namespace Texty
             this.textLineChar = new System.Windows.Forms.ToolStripStatusLabel();
             this.textLen = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.textZoomFactor = new System.Windows.Forms.ToolStripStatusLabel();
             this.textEncoding = new System.Windows.Forms.ToolStripStatusLabel();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.textZoomFactor = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -154,6 +156,8 @@ namespace Texty
             this.findToolStripMenuItem,
             this.replaceToolStripMenuItem,
             this.toolStripSeparator3,
+            this.dateToolStripMenuItem,
+            this.toolStripSeparator4,
             this.fontToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
@@ -162,24 +166,36 @@ namespace Texty
             // findToolStripMenuItem
             // 
             this.findToolStripMenuItem.Name = "findToolStripMenuItem";
-            this.findToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
+            this.findToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.findToolStripMenuItem.Text = "Find";
             // 
             // replaceToolStripMenuItem
             // 
             this.replaceToolStripMenuItem.Name = "replaceToolStripMenuItem";
-            this.replaceToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
+            this.replaceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.replaceToolStripMenuItem.Text = "Replace";
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(112, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
+            // 
+            // dateToolStripMenuItem
+            // 
+            this.dateToolStripMenuItem.Name = "dateToolStripMenuItem";
+            this.dateToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.dateToolStripMenuItem.Text = "Date";
+            this.dateToolStripMenuItem.Click += new System.EventHandler(this.timeDateToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
             // 
             // fontToolStripMenuItem
             // 
             this.fontToolStripMenuItem.Name = "fontToolStripMenuItem";
-            this.fontToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
+            this.fontToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.fontToolStripMenuItem.Text = "Font";
             // 
             // viewToolStripMenuItem
@@ -263,28 +279,34 @@ namespace Texty
             // textLineChar
             // 
             this.textLineChar.Name = "textLineChar";
-            this.textLineChar.Size = new System.Drawing.Size(179, 17);
+            this.textLineChar.Size = new System.Drawing.Size(187, 17);
             this.textLineChar.Spring = true;
             this.textLineChar.Text = "Ln 0, Char 0";
             // 
             // textLen
             // 
             this.textLen.Name = "textLen";
-            this.textLen.Size = new System.Drawing.Size(179, 17);
+            this.textLen.Size = new System.Drawing.Size(187, 17);
             this.textLen.Spring = true;
             this.textLen.Text = "Length 0";
             // 
             // toolStripStatusLabel3
             // 
             this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(179, 17);
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(187, 17);
             this.toolStripStatusLabel3.Spring = true;
             this.toolStripStatusLabel3.Text = "Plain Text";
+            // 
+            // textZoomFactor
+            // 
+            this.textZoomFactor.Name = "textZoomFactor";
+            this.textZoomFactor.Size = new System.Drawing.Size(35, 17);
+            this.textZoomFactor.Text = "100%";
             // 
             // textEncoding
             // 
             this.textEncoding.Name = "textEncoding";
-            this.textEncoding.Size = new System.Drawing.Size(179, 17);
+            this.textEncoding.Size = new System.Drawing.Size(187, 17);
             this.textEncoding.Spring = true;
             this.textEncoding.Text = "UTF-8";
             // 
@@ -297,12 +319,6 @@ namespace Texty
             // 
             this.saveFileDialog1.Filter = "Text Files|*.txt|JSON File|*.json";
             this.saveFileDialog1.Title = "Hit save and make it stay!";
-            // 
-            // textZoomFactor
-            // 
-            this.textZoomFactor.Name = "textZoomFactor";
-            this.textZoomFactor.Size = new System.Drawing.Size(35, 17);
-            this.textZoomFactor.Text = "100%";
             // 
             // TextyForm
             // 
@@ -358,5 +374,7 @@ namespace Texty
         private System.Windows.Forms.ToolStripMenuItem closeOpenedFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripStatusLabel textZoomFactor;
+        private System.Windows.Forms.ToolStripMenuItem dateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
     }
 }
