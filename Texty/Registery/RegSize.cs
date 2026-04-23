@@ -11,7 +11,7 @@ namespace Texty
 {
     internal class RegSize
     {
-        private static string RegAddress = $"Software\\{Application.ProductName}\\Settings\\FormSize";
+        private static string RegAddress = $"Software\\{Application.ProductName}\\Settings\\Size";
         private static Size defaultSize = new Size(816, 489);
 
         public static bool IsExisted
