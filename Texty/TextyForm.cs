@@ -52,7 +52,7 @@ namespace Texty
 
                 if (r == DialogResult.Yes)
                 {
-                    saveToolStripMenuItem_Click(sender, EventArgs.Empty);
+                    saveToolStripMenuItem.PerformClick();
                 }
                 else if (r == DialogResult.Cancel)
                 {
@@ -199,9 +199,10 @@ namespace Texty
             }
             else if (!IsFileOpened() && IsFileEdited())
             {
-                saveAsToolStripMenuItem_Click(sender, e);
+                saveAsToolStripMenuItem.PerformClick();
             }
         }
+
         private async void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
@@ -224,15 +225,21 @@ namespace Texty
         #region Edit Tab
         private void timeDateToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            string GetPersianDate(DateTime dateTime)
+            {
+                PersianCalendar persianCalendar = new PersianCalendar();
+
+                string persianYear = persianCalendar.GetYear(dateTime).ToString("0000");
+                string persianMonth = persianCalendar.GetMonth(dateTime).ToString("00");
+                string persianDayOfMonth = persianCalendar.GetDayOfMonth(dateTime).ToString("00");
+
+                return $"{persianYear}/{persianMonth}/{persianDayOfMonth}";
+            }
+
             DateTime systemDateTime = DateTime.Now;
-            PersianCalendar persianCalendar = new PersianCalendar();
-
-            string persianYear = persianCalendar.GetYear(systemDateTime).ToString("0000");
-            string persianMonth = persianCalendar.GetMonth(systemDateTime).ToString("00");
-            string persianDayOfMonth = persianCalendar.GetDayOfMonth(systemDateTime).ToString("00");
-            string solarHijriDate = $"{persianYear}/{persianMonth}/{persianDayOfMonth}";
-
+            
             string gregorianDate = $"{systemDateTime.Year:0000}/{systemDateTime.Month:00}/{systemDateTime.Day:00}";
+            string solarHijriDate = GetPersianDate(systemDateTime);
 
             string value = $"\r\n{solarHijriDate}\r\n{gregorianDate}";
             int selectionLen = richTextBox1.SelectionStart + value.Replace("\r\n", "x").Length;
