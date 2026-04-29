@@ -19,7 +19,7 @@ namespace Texty
     public partial class TextyForm : Form
     {
         float zoom = 0.1f;
-        bool flagOpenFile = false;
+        bool flagEnableTextChange = true;
         public TextyForm()
         {
             InitializeComponent();
@@ -131,9 +131,9 @@ namespace Texty
             toolStripSeparator1.Visible = status;
             if (!status)
             {
-                flagOpenFile = true;
+                flagEnableTextChange = false;
                 richTextBox1.Clear();
-                flagOpenFile = false;
+                flagEnableTextChange = true;
             }
         }
 
@@ -151,9 +151,9 @@ namespace Texty
         {
             using (StreamReader sr = new StreamReader(address))
             {
-                flagOpenFile = true;
+                flagEnableTextChange = false;
                 richTextBox1.Text = await sr.ReadToEndAsync();
-                flagOpenFile = false;
+                flagEnableTextChange = true;
             }
         }
 
@@ -336,7 +336,7 @@ namespace Texty
         #region richTextBox
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
-            if (!flagOpenFile && !IsFileEdited())
+            if (flagEnableTextChange && !IsFileEdited())
             {
                 IsFileEdited(true);
             }
