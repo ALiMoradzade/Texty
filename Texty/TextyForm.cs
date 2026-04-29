@@ -8,6 +8,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -26,7 +27,7 @@ namespace Texty
             richTextBox1.AllowDrop = true;
         }
 
-        #region Form
+        #region Form Events
         private void TextyForm_Load(object sender, EventArgs e)
         {
             if (!RegFont.IsExisted) RegFont.Write();
@@ -47,12 +48,7 @@ namespace Texty
         {
             if ((IsFileOpened() && IsFileEdited()) || (!IsFileOpened() && !IsTextEmpty()))
             {
-                var r = MessageBox.Show("Do you want to save?",
-                                        "Magic is over!, Vanish✨ the form!",
-                                        MessageBoxButtons.YesNoCancel,
-                                        MessageBoxIcon.Question,
-                                        MessageBoxDefaultButton.Button3);
-
+                var r = MessageBoxSaveTextOrFile();
                 if (r == DialogResult.Yes)
                 {
                     saveToolStripMenuItem.PerformClick();
@@ -76,7 +72,50 @@ namespace Texty
         }
         #endregion
 
-        #region Set Methods
+        #region Message Boxes
+        public DialogResult MessageBoxDragDrop()
+        {
+            var r = MessageBox.Show("Would you like to open the file?",
+                         "Incoming file detected...",
+                         MessageBoxButtons.YesNo,
+                         MessageBoxIcon.Question,
+                         MessageBoxDefaultButton.Button2);
+            return r;
+        }
+
+        public DialogResult MessageBoxOpenFile()
+        {
+            var r = MessageBox.Show("Overwrite text file over your text?",
+                                  "Text Mix-Up! 😵‍💫",
+                                  MessageBoxButtons.YesNo,
+                                  MessageBoxIcon.Exclamation,
+                                  MessageBoxDefaultButton.Button2);
+
+            return r;
+        }
+
+        public DialogResult MessageBoxDiscardChanges()
+        {
+            var r = MessageBox.Show("Do you want to discard the changes?",
+                                      "We're about to close!",
+                                      MessageBoxButtons.YesNo,
+                                      MessageBoxIcon.Question,
+                                      MessageBoxDefaultButton.Button2);
+            return r;
+        }
+
+        public DialogResult MessageBoxSaveTextOrFile()
+        {
+            var r = MessageBox.Show("Do you want to save?",
+                                        "Magic is over!, Vanish✨ the form!",
+                                        MessageBoxButtons.YesNoCancel,
+                                        MessageBoxIcon.Question,
+                                        MessageBoxDefaultButton.Button3);
+            return r;
+        }
+        #endregion
+
+        #region Undo, Cut, Copy, Paste, Delete, Select All Methods
         public void Undo()
         {
             richTextBox1.Undo();
@@ -111,6 +150,18 @@ namespace Texty
         {
             richTextBox1.SelectAll();
         }
+        #endregion
+
+        #region File Status Methods
+        public bool IsTextEmpty()
+        {
+            return richTextBox1.Text.All(character => char.IsWhiteSpace(character));
+        }
+
+        public bool IsFileEdited()
+        {
+            return Text.Contains('*');
+        }
 
         public void IsFileEdited(bool status)
         {
@@ -122,6 +173,11 @@ namespace Texty
             {
                 Text = Text.Replace("*", "");
             }
+        }
+
+        public bool IsFileOpened()
+        {
+            return !string.IsNullOrEmpty(Text.Replace("*", ""));
         }
 
         public void IsFileOpened(bool status, string fileName = "")
@@ -137,17 +193,14 @@ namespace Texty
             }
         }
 
-        public void SetOpenedFileAddress(string fileAddress)
-        {
-            openFileDialog1.FileName = fileAddress;
-        }
-
         public void SetTextZoomFactorStatus()
         {
             textZoomFactor.Text = $"{richTextBox1.ZoomFactor * 100}%";
         }
+        #endregion
 
-        public async Task<string> ReadFile(string address)
+        #region Open/Save Methods
+        private async Task<string> ReadFile(string address)
         {
             string text;
             using (StreamReader sr = new StreamReader(address))
@@ -157,16 +210,15 @@ namespace Texty
             return text;
         }
 
-        public DialogResult OpenFileMessageBox()
+        private async Task WriteFile(string address)
         {
-            var r = MessageBox.Show("Overwrite text file over your text?",
-                                  "Text Mix-Up! 😵‍💫",
-                                  MessageBoxButtons.YesNo,
-                                  MessageBoxIcon.Exclamation,
-                                  MessageBoxDefaultButton.Button2);
-
-            return r;
+            using (StreamWriter streamWriter = new StreamWriter(address))
+            {
+                await streamWriter.WriteLineAsync(richTextBox1.Text);
+            }
         }
+
+       
 
         public async void OpenFile(string fileAddress, string fileName)
         {
@@ -178,65 +230,22 @@ namespace Texty
             IsFileOpened(true, fileName);
         }
 
-        public async Task WriteFile(string address)
-        {
-            using (StreamWriter streamWriter = new StreamWriter(address))
-            {
-                await streamWriter.WriteLineAsync(richTextBox1.Text);
-            }
-        }
+       
+
         #endregion
-
-        #region Get Methods
-        public bool IsTextEmpty()
-        {
-            return richTextBox1.Text.All(character => char.IsWhiteSpace(character));
-        }
-
-        public bool IsFileOpened()
-        {
-            return !string.IsNullOrEmpty(Text.Replace("*", ""));
-        }
-
-        public bool IsFileEdited()
-        {
-            return Text.Contains('*');
-        }
-
-        public string GetOpenedFileAddress()
-        {
-            return openFileDialog1.FileName;
-        }
-
-        public string GetNewFileAddress()
-        {
-            return saveFileDialog1.FileName;
-        }
-
-        public string GetFileName()
-        {
-            return openFileDialog1.SafeFileName;
-        }
-
-        public string GetNewFileName()
-        {
-            return Path.GetFileName(saveFileDialog1.FileName);
-        }
-        #endregion
-
 
         #region File Tab
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!IsTextEmpty())
             {
-                var r = OpenFileMessageBox();
+                var r = MessageBoxOpenFile();
                 if (r == DialogResult.No) return;
             }
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                OpenFile(GetOpenedFileAddress(), GetFileName());
+                OpenFile(openFileDialog1.FileName, openFileDialog1.SafeFileName);
             }
         }
 
@@ -245,12 +254,7 @@ namespace Texty
             // When you came here, it means file is opened
             if (IsFileEdited())
             {
-                var r = MessageBox.Show("Do you want to discard the changes?",
-                                       "We're about to close!",
-                                       MessageBoxButtons.YesNo,
-                                       MessageBoxIcon.Question,
-                                       MessageBoxDefaultButton.Button2);
-
+                var r = MessageBoxDiscardChanges();
                 if (r == DialogResult.No) return;
             }
             IsFileOpened(false);
@@ -260,7 +264,7 @@ namespace Texty
         {
             if (IsFileOpened() && IsFileEdited())
             {
-                await WriteFile(GetOpenedFileAddress());
+                await WriteFile(openFileDialog1.FileName);
                 IsFileEdited(false);
             }
             else if (!IsFileOpened() && IsFileEdited())
@@ -273,9 +277,9 @@ namespace Texty
         {
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                await WriteFile(GetNewFileAddress());
-                SetOpenedFileAddress(GetNewFileAddress());
-                IsFileOpened(true, GetNewFileName());
+                await WriteFile(saveFileDialog1.FileName);
+                openFileDialog1.FileName = saveFileDialog1.FileName;
+                IsFileOpened(true, Path.GetFileName(saveFileDialog1.FileName));
             }
         }
 
@@ -348,6 +352,36 @@ namespace Texty
 
 
         #region richTextBox
+
+        int richTextBoxSelection;
+
+        private async void richTextBox1_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] filesAddresses = (string[])e.Data.GetData(DataFormats.FileDrop);
+            string fileAddress = filesAddresses[0];
+
+            var r = MessageBoxDragDrop();
+            if (r == DialogResult.Yes)
+            {
+                if (!IsTextEmpty())
+                {
+                    r = MessageBoxOpenFile();
+                    if (r == DialogResult.No) return;
+                }
+
+                OpenFile(fileAddress, Path.GetFileName(fileAddress));
+                return;
+            }
+            string text = await ReadFile(fileAddress);
+            richTextBox1.Text += text;
+            richTextBox1.SelectionStart = richTextBoxSelection;
+        }
+
+        private void richTextBox1_DragEnter(object sender, DragEventArgs e)
+        {
+            richTextBoxSelection = richTextBox1.SelectionStart;
+        }
+
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
             if (flagEnableTextChange && !IsFileEdited())
@@ -498,38 +532,5 @@ namespace Texty
 
         #endregion
 
-        int richTextBoxSelection;
-        private async void richTextBox1_DragDrop(object sender, DragEventArgs e)
-        {
-            string[] filesAddresses = (string[])e.Data.GetData(DataFormats.FileDrop);
-            string fileAddress = filesAddresses[0];
-            var r = MessageBox.Show("Would you like to open the file?",
-                                     "Incoming file detected...",
-                                     MessageBoxButtons.YesNo,
-                                     MessageBoxIcon.Question,
-                                     MessageBoxDefaultButton.Button2);
-
-            string text = await ReadFile(fileAddress);
-
-            if (r == DialogResult.Yes)
-            {
-                if (!IsTextEmpty())
-                {
-                    r = OpenFileMessageBox();
-                    if (r == DialogResult.No) return;
-                }
-
-                OpenFile(fileAddress, Path.GetFileName(fileAddress));
-                return;
-            }
-
-            richTextBox1.Text += text;
-            richTextBox1.SelectionStart = richTextBoxSelection;
-        }
-
-        private void richTextBox1_DragEnter(object sender, DragEventArgs e)
-        {
-            richTextBoxSelection = richTextBox1.SelectionStart;
-        }
     }
 }
