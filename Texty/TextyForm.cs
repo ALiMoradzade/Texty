@@ -116,7 +116,7 @@ namespace Texty
         }
         #endregion
 
-        #region Undo, Cut, Copy, Paste, Delete, Select All Methods
+        #region Edit Commands
         public void Undo()
         {
             richTextBox1.Undo();
@@ -150,6 +150,19 @@ namespace Texty
         public void SelectAll()
         {
             richTextBox1.SelectAll();
+        }
+
+        public void EnableContextualEditing(bool state)
+        {
+            // Menu item
+            cutToolStripMenuItem1.Enabled = state;
+            copyToolStripMenuItem1.Enabled = state;
+            deleteToolStripMenuItem1.Enabled = state;
+
+            // Context menu strip
+            cutToolStripMenuItem.Enabled = state;
+            copyToolStripMenuItem.Enabled = state;
+            deleteToolStripMenuItem.Enabled = state;
         }
         #endregion
 
@@ -427,6 +440,9 @@ namespace Texty
             int charCount = currentTextCursorIndex - richTextBox1.GetFirstCharIndexFromLine(lineCount);
             textLineChar.Text = $"Ln {lineCount + 1}, Char {charCount + 1}";
             textLen.Text = $"Length {richTextBox1.Text.Length}";
+
+            if (richTextBox1.SelectionLength > 0) EnableContextualEditing(true);
+            else EnableContextualEditing(false);
         }
 
         private void richTextBox1_KeyDown(object sender, KeyEventArgs e)
