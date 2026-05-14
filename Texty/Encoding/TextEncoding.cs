@@ -100,8 +100,7 @@ namespace Texty.Encoding
         {
             var hexaDecimalList = decimalArray.Select(deci =>
             {
-                string hex = $"{deci:x2}";
-                hex = hex.ToUpper();
+                string hex = $"{deci:X2}"; // X uppercaser, x lowercase
                 return hex;
             });
 

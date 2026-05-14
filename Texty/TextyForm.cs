@@ -473,6 +473,7 @@ namespace Texty
                 {
                     EnableSingleCharEncoding(false);
                     EnableMultipleCharEncoding(true);
+
                     TextEncoding encode = new TextEncoding();
                     encode.Encode(richTextBox1.SelectedText);
                     toolStripStatusLabelUTF8.Text = $"UTF-8: {encode.UTF8}";
