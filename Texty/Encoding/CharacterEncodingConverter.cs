@@ -13,6 +13,14 @@ namespace Texty.Encoding
 {
     internal class CharacterEncodingConverter
     {
+        public enum Base
+        {
+            Binary = 2,
+            Octal = 8,
+            Decimal = 10,
+            Hexadecimal = 16
+        }
+
         private char character;
         private string binaryCode;
         private string octalCode;
@@ -115,6 +123,25 @@ namespace Texty.Encoding
                 if (splitedString.Last() == separator) splitedString = splitedString.Remove(splitedString.Length - 1);
             }
             return splitedString;
+        }
+
+        public static bool IsCodeBaseCorrect(string code, Base codeBase)
+        {
+            try
+            {
+                Convert.ToInt32(code, (int)codeBase);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public static bool IsCodeLengthCorrect(string code, Base codeBase)
+        {
+            int decimalCode = Convert.ToInt32(code, (int)codeBase);
+            return decimalCode >= char.MinValue && decimalCode <= char.MaxValue;
         }
 
     }
