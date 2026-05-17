@@ -94,11 +94,16 @@ namespace Texty.Encoding
             }
             
             var codeBase = (CodeBase)comboBox1.SelectedItem;
-
             int decimalCode = Convert.ToInt32(textBoxCode.Text, (int)codeBase);
 
-            CharacterEncodingConverter converter = new CharacterEncodingConverter(decimalCode);
+            CharacterEncodingConverter converter = new CharacterEncodingConverter();
+            converter.Decode(decimalCode);
             textBoxChar.Text = converter.Character.ToString();
+        }
+
+        private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            textBoxCode.Paste();
         }
     }
 }

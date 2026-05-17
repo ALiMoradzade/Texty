@@ -479,7 +479,9 @@ namespace Texty
                     EnableMultipleCharEncoding(false);
 
                     char c = richTextBox1.SelectedText[0];
-                    CharacterEncodingConverter converter = new CharacterEncodingConverter(c);
+
+                    CharacterEncodingConverter converter = new CharacterEncodingConverter();
+                    converter.Encode(c);
                     toolStripStatusLabelBinary.Text = $"Binary: {converter.BinaryCode}";
                     toolStripStatusLabelOctal.Text = $"Octal: {converter.OctalCode}";
                     toolStripStatusLabelDecimal.Text = $"Decimal: {converter.DecimalCode}";
