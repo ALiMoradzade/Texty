@@ -64,6 +64,7 @@
     <Compile Include="Encoding\TextEncodingConverter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Registery\RegAddress.cs" />
     <Compile Include="Registery\RegFont.cs" />
     <Compile Include="Registery\RegLocation.cs" />
     <Compile Include="Registery\RegSize.cs" />

@@ -11,14 +11,14 @@ namespace Texty.Registery
 {
     internal class RegWindowState
     {
-        private static string RegAddress = $"Software\\{Application.ProductName}\\Settings\\WindowState";
+        private static string address = RegAddress.RegWindowsState;
         private static FormWindowState defaultState = FormWindowState.Normal;
 
         public static bool IsExisted
         {
             get
             {
-                using (RegistryKey key = Registry.CurrentUser.OpenSubKey(RegAddress, false))
+                using (RegistryKey key = Registry.CurrentUser.OpenSubKey(address, false))
                 {
                     if (key != null) return true;
                 }
@@ -33,7 +33,7 @@ namespace Texty.Registery
 
         public static void Write(FormWindowState state)
         {
-            using (RegistryKey key = Registry.CurrentUser.CreateSubKey(RegAddress))
+            using (RegistryKey key = Registry.CurrentUser.CreateSubKey(address))
             {
                 key.SetValue("State", (int)state, RegistryValueKind.DWord);
             }
@@ -41,7 +41,7 @@ namespace Texty.Registery
 
         public static FormWindowState Read()
         {
-            using (RegistryKey key = Registry.CurrentUser.OpenSubKey(RegAddress, false))
+            using (RegistryKey key = Registry.CurrentUser.OpenSubKey(address, false))
             {
                 if (key != null)
                 {

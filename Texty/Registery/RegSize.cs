@@ -4,21 +4,21 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Windows.Forms;
 using System.Threading.Tasks;
+using Texty.Registery;
 
 namespace Texty
 {
     internal class RegSize
     {
-        private static string RegAddress = $"Software\\{Application.ProductName}\\Settings\\Size";
+        private static string address = RegAddress.RegSize;
         private static Size defaultSize = new Size(716, 525);
 
         public static bool IsExisted
         {
             get
             {
-                using (RegistryKey key = Registry.CurrentUser.OpenSubKey(RegAddress, false))
+                using (RegistryKey key = Registry.CurrentUser.OpenSubKey(address, false))
                 {
                     if (key != null) return true;
                 }
@@ -33,7 +33,7 @@ namespace Texty
 
         public static void Write(Size size)
         {
-            using (RegistryKey key = Registry.CurrentUser.CreateSubKey(RegAddress))
+            using (RegistryKey key = Registry.CurrentUser.CreateSubKey(address))
             {
                 key.SetValue("Width", size.Width, RegistryValueKind.DWord);
                 key.SetValue("Height", size.Height, RegistryValueKind.DWord);
@@ -42,7 +42,7 @@ namespace Texty
 
         public static Size Read()
         {
-            using (RegistryKey key = Registry.CurrentUser.OpenSubKey(RegAddress, false))
+            using (RegistryKey key = Registry.CurrentUser.OpenSubKey(address, false))
             {
                 if (key != null)
                 {
