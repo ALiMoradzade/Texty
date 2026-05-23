@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 
-namespace Texty.Encoding
+namespace Texty.Tools.Encoding
 {
     internal class CharacterEncodingConverter
     {

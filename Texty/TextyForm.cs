@@ -13,8 +13,8 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Texty.Encoding;
-using Texty.Directory_Manager;
+using Texty.Tools.Encoding;
+using Texty.Tools.Directory_Manager;
 using Texty.Registery;
 using static System.Net.Mime.MediaTypeNames;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -25,6 +25,7 @@ namespace Texty
     {
         float zoom = 0.1f;
         bool flagEnableTextChange = true;
+
         public TextyForm()
         {
             InitializeComponent();

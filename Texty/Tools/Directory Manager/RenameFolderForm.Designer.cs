@@ -1,4 +1,4 @@
-namespace Texty.Directory_Manager
+namespace Texty.Tools.Directory_Manager
 {
     partial class RenameFolderForm
     {

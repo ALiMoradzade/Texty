@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
 
-namespace Texty.Directory_Manager
+namespace Texty.Tools.Directory_Manager
 {
     public partial class NewFoldersForm : Form
     {

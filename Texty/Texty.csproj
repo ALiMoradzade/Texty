@@ -48,37 +48,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Encoding\CharacterDecoderForm.cs">
+    <Compile Include="Tools\Encoding\CharacterDecoderForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Encoding\CharacterDecoderForm.Designer.cs">
+    <Compile Include="Tools\Encoding\CharacterDecoderForm.Designer.cs">
       <DependentUpon>CharacterDecoderForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Encoding\CharacterEncodingConverter.cs" />
-    <Compile Include="Encoding\TextDecoderForm.cs">
+    <Compile Include="Tools\Encoding\CharacterEncodingConverter.cs" />
+    <Compile Include="Tools\Encoding\TextDecoderForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Encoding\TextDecoderForm.Designer.cs">
+    <Compile Include="Tools\Encoding\TextDecoderForm.Designer.cs">
       <DependentUpon>TextDecoderForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Encoding\TextEncodingConverter.cs" />
-    <Compile Include="Directory Manager\DirectoryManagerForm.cs">
+    <Compile Include="Tools\Encoding\TextEncodingConverter.cs" />
+    <Compile Include="Tools\Directory Manager\DirectoryManagerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Directory Manager\DirectoryManagerForm.Designer.cs">
+    <Compile Include="Tools\Directory Manager\DirectoryManagerForm.Designer.cs">
       <DependentUpon>DirectoryManagerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Directory Manager\DirectoryRename.cs" />
-    <Compile Include="Directory Manager\NewFoldersForm.cs">
+    <Compile Include="Tools\Directory Manager\DirectoryRename.cs" />
+    <Compile Include="Tools\Directory Manager\NewFoldersForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Directory Manager\NewFoldersForm.Designer.cs">
+    <Compile Include="Tools\Directory Manager\NewFoldersForm.Designer.cs">
       <DependentUpon>NewFoldersForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Directory Manager\RenameFolderForm.cs">
+    <Compile Include="Tools\Directory Manager\RenameFolderForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Directory Manager\RenameFolderForm.Designer.cs">
+    <Compile Include="Tools\Directory Manager\RenameFolderForm.Designer.cs">
       <DependentUpon>RenameFolderForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -94,19 +94,19 @@
     <Compile Include="TextyForm.Designer.cs">
       <DependentUpon>TextyForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Encoding\CharacterDecoderForm.resx">
+    <EmbeddedResource Include="Tools\Encoding\CharacterDecoderForm.resx">
       <DependentUpon>CharacterDecoderForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Encoding\TextDecoderForm.resx">
+    <EmbeddedResource Include="Tools\Encoding\TextDecoderForm.resx">
       <DependentUpon>TextDecoderForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Directory Manager\DirectoryManagerForm.resx">
+    <EmbeddedResource Include="Tools\Directory Manager\DirectoryManagerForm.resx">
       <DependentUpon>DirectoryManagerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Directory Manager\NewFoldersForm.resx">
+    <EmbeddedResource Include="Tools\Directory Manager\NewFoldersForm.resx">
       <DependentUpon>NewFoldersForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Directory Manager\RenameFolderForm.resx">
+    <EmbeddedResource Include="Tools\Directory Manager\RenameFolderForm.resx">
       <DependentUpon>RenameFolderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

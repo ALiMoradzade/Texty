@@ -1,4 +1,4 @@
-namespace Texty.Encoding
+namespace Texty.Tools.Encoding
 {
     partial class TextDecoderForm
     {

@@ -8,9 +8,8 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
-using static Texty.Encoding.CharacterEncodingConverter;
 
-namespace Texty.Encoding
+namespace Texty.Tools.Encoding
 {
     internal class TextEncodingConverter
     {

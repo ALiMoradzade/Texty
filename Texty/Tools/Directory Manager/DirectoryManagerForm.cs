@@ -14,7 +14,7 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 using static System.Windows.Forms.AxHost;
 
-namespace Texty.Directory_Manager
+namespace Texty.Tools.Directory_Manager
 {
     public partial class DirectoryManagerForm : Form
     {

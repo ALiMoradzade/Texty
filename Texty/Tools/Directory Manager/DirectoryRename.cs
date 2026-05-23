@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Texty.Directory_Manager
+namespace Texty.Tools.Directory_Manager
 {
     internal struct DirectoryRename
     {

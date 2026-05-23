@@ -8,9 +8,8 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static Texty.Encoding.CharacterDecoderForm;
 
-namespace Texty.Encoding
+namespace Texty.Tools.Encoding
 {
     public partial class TextDecoderForm : Form
     {

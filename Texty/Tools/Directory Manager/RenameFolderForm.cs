@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Texty.Directory_Manager
+namespace Texty.Tools.Directory_Manager
 {
     public partial class RenameFolderForm : Form
     {
