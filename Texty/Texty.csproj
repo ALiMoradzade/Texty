@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Utilities\StringCaseConvertor\StringCaseConvertor.cs" />
     <Compile Include="Tools\Encoding\CharacterDecoderForm.cs">
       <SubType>Form</SubType>
     </Compile>
