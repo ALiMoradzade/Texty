@@ -132,6 +132,7 @@ namespace Texty
             this.toolStripStatusLabelUTF32 = new System.Windows.Forms.ToolStripStatusLabel();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.clipboardWatcherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -741,7 +742,8 @@ namespace Texty
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.decodeToolStripMenuItem,
-            this.directoryManagerToolStripMenuItem});
+            this.directoryManagerToolStripMenuItem,
+            this.clipboardWatcherToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
@@ -752,7 +754,7 @@ namespace Texty
             this.textToolStripMenuItem,
             this.characterToolStripMenuItem});
             this.decodeToolStripMenuItem.Name = "decodeToolStripMenuItem";
-            this.decodeToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.decodeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.decodeToolStripMenuItem.Text = "Decode";
             // 
             // textToolStripMenuItem
@@ -772,7 +774,7 @@ namespace Texty
             // directoryManagerToolStripMenuItem
             // 
             this.directoryManagerToolStripMenuItem.Name = "directoryManagerToolStripMenuItem";
-            this.directoryManagerToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.directoryManagerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.directoryManagerToolStripMenuItem.Text = "Directory Manager";
             this.directoryManagerToolStripMenuItem.Click += new System.EventHandler(this.directoryManagerToolStripMenuItem_Click);
             // 
@@ -954,6 +956,13 @@ namespace Texty
             this.copyToolStripMenuItem2.Text = "Copy";
             this.copyToolStripMenuItem2.Click += new System.EventHandler(this.copyToolStripMenuItem2_Click);
             // 
+            // clipboardWatcherToolStripMenuItem
+            // 
+            this.clipboardWatcherToolStripMenuItem.Name = "clipboardWatcherToolStripMenuItem";
+            this.clipboardWatcherToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.clipboardWatcherToolStripMenuItem.Text = "Clipboard Watcher";
+            this.clipboardWatcherToolStripMenuItem.Click += new System.EventHandler(this.clipboardWatcherToolStripMenuItem_Click);
+            // 
             // TextyForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1094,5 +1103,6 @@ namespace Texty
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator16;
         private System.Windows.Forms.ToolStripMenuItem convertDigitsToASCIIToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem removeNonPersianLettersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clipboardWatcherToolStripMenuItem;
     }
 }

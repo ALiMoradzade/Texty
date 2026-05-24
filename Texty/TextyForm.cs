@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Texty.Registery;
+using Texty.Tools.Clipboard_Manager;
 using Texty.Tools.Directory_Manager;
 using Texty.Tools.Encoding;
 using Texty.Utilities.String_Normalizer;
@@ -434,6 +435,12 @@ namespace Texty
         private void directoryManagerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DirectoryManagerForm form = new DirectoryManagerForm();
+            form.Show();
+        }
+
+        private void clipboardWatcherToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ClipboardWatcherForm form = new ClipboardWatcherForm();
             form.Show();
         }
         #endregion
@@ -938,8 +945,9 @@ namespace Texty
         }
 
 
+
         #endregion
 
-       
+
     }
 }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Texty.Tools.Clipboard_Manager;
 
 namespace Texty.Tools.Encoding
 {
@@ -74,17 +75,7 @@ namespace Texty.Tools.Encoding
 
         private void copyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
-            {
-                Clipboard.SetText(textBoxCharacter.Text);
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Something went wrong",
-                                "Texty failed to copy the selected text to the clipboard",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
-            }
+            ClipboardManager.CopyToClipboard(textBoxCharacter.Text);
         }
     }
 }
