@@ -496,13 +496,13 @@ namespace Texty
             }
         }
 
-        private void SetStatusStrip1()
+        private void SetTextInfo()
         {
             textCurrentLineAndChar.Text = $"Ln {CurrentCursorLine() + 1}, Char {CurrentCursorCharCount() + 1}";
             textLengthOrCursorLength.Text = CurrentCursorLength();
         }
 
-        private void SetStatusStrip2()
+        private void SetCharEncoding()
         {
             CharacterEncodingConverter converter = new CharacterEncodingConverter();
             converter.Encode(richTextBox1.SelectedText[0]);
@@ -512,7 +512,7 @@ namespace Texty
             toolStripStatusLabelHexadecimal.Text = $"Hexadecimal: {converter.HexadecimalCode}";
         }
 
-        private void SetStatusStrip34()
+        private void Set_UTF_8_16_32()
         {
             TextEncodingConverter encode = new TextEncodingConverter();
             encode.Encode(richTextBox1.SelectedText);
@@ -524,6 +524,7 @@ namespace Texty
 
         #region richTextBox
 
+        #region Drag and Drop File
         int richTextBoxSelection;
 
         private void richTextBox1_DragDrop(object sender, DragEventArgs e)
@@ -557,6 +558,7 @@ namespace Texty
         {
             richTextBoxSelection = richTextBox1.SelectionStart;
         }
+        #endregion
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
@@ -568,32 +570,32 @@ namespace Texty
 
         private void richTextBox1_SelectionChanged(object sender, EventArgs e)
         {
-            SetStatusStrip1();
+            SetTextInfo();
+
+            if (richTextBox1.SelectionLength > 1) EnableContextualEditing(true);
+            else EnableContextualEditing(false);
 
             // UTF-8, UTF-16, UTF-32 status bar
             if (richTextBox1.SelectionLength > 31 || richTextBox1.SelectionLength == 0)
             {
-                EnableContextualEditing(false);
                 EnableSingleCharEncoding(false);
                 EnableMultipleCharEncoding(false);
             }
             else
             {
-                EnableContextualEditing(true);
-
                 if (richTextBox1.SelectionLength == 1)
                 {
                     EnableSingleCharEncoding(true);
                     EnableMultipleCharEncoding(false);
 
-                    SetStatusStrip2();
+                    SetCharEncoding();
                 }
                 else if (richTextBox1.SelectionLength > 1)
                 {
                     EnableSingleCharEncoding(false);
                     EnableMultipleCharEncoding(true);
 
-                    SetStatusStrip34();
+                    Set_UTF_8_16_32();
                 }
             }
         }
