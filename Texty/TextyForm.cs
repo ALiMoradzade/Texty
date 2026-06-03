@@ -162,8 +162,8 @@ namespace Texty
 
         public DialogResult MessageBoxSaveChoice()
         {
-            var r = MessageBox.Show("Do you want to save?",
-                                        "Magic is over!, Vanish✨ the form!",
+            var r = MessageBox.Show("Do you want to save your changes?",
+                                        "Magic is over!, Vanish✨, Texty!",
                                         MessageBoxButtons.YesNoCancel,
                                         MessageBoxIcon.Question,
                                         MessageBoxDefaultButton.Button3);
