@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Clipboard Manager, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Library\Clipboard Manager\Clipboard Manager\bin\Release\Clipboard Manager.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -68,9 +72,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Clipboard Manager\Clipboard Manager.csproj">
+    <ProjectReference Include="..\Clipboard Manager\Clipboard Watcher.csproj">
       <Project>{91feab57-9fb6-4444-aa1d-214391c3629e}</Project>
-      <Name>Clipboard Manager</Name>
+      <Name>Clipboard Watcher</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

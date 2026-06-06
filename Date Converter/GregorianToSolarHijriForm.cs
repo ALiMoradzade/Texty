@@ -8,7 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Texty.Clipboard_Manager;
+using Clipboard_Manager;
 
 namespace Texty.Date_Converter
 {

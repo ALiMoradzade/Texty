@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Directory Manager", "Direct
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Encoding Converter", "Encoding Converter\Encoding Converter.csproj", "{8CEC5581-AA18-49DE-AD59-76224F2365F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clipboard Manager", "Clipboard Manager\Clipboard Manager.csproj", "{91FEAB57-9FB6-4444-AA1D-214391C3629E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clipboard Watcher", "Clipboard Manager\Clipboard Watcher.csproj", "{91FEAB57-9FB6-4444-AA1D-214391C3629E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Date Converter", "Date Converter\Date Converter.csproj", "{9222FC21-5D97-4A4C-AAAF-58129E92A151}"
 EndProject
