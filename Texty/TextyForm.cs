@@ -1,4 +1,5 @@
 using Microsoft.Win32;
+using Registry_Manager;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,13 +16,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Texty;
 using Texty.Clipboard_Watcher;
+using Clipboard_Manager;
+using Texty.Date_Converter;
 using Texty.Directory_Manager;
 using Texty.Encoding_Converter;
-using Texty.Utilities;
-using RegistrySettings;
 using Texty.File;
-using Registry_Manager;
-using Texty.Date_Converter;
+using Texty.Utilities;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Texty
 {
@@ -114,7 +115,7 @@ namespace Texty
             }
 
             RegistryFont registryFont = new RegistryFont(Application.ProductName);
-            registryFont.Font = Font;
+            registryFont.Font = fontDialog1.Font;
             registryFont.Write();
         }
         #endregion
@@ -1019,26 +1020,8 @@ namespace Texty
             string text = clickedStatusLabel.Text;
             string filteredText = text.Substring(text.IndexOf(prefix) + prefix.Length);
 
-            try
-            {
-                Clipboard.SetText(filteredText);
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Something went wrong",
-                                "Texty failed to copy the selected text to the clipboard",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
-            }
+            ClipboardManager.CopyToClipboard(filteredText);
         }
-
-
-
-
-
-
-
-
         #endregion
 
         

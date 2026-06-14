@@ -36,6 +36,10 @@
     <ApplicationIcon>Picture2 icon256.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Clipboard Manager, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Library\Clipboard Manager\Clipboard Manager\bin\Release\Clipboard Manager.dll</HintPath>
+    </Reference>
     <Reference Include="Registry Manager">
       <HintPath>..\..\..\Library\Registry Manager\Registry Manager\bin\Release\Registry Manager.dll</HintPath>
     </Reference>
@@ -98,7 +102,7 @@
     <Content Include="Picture2 icon256.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Clipboard Manager\Clipboard Watcher.csproj">
+    <ProjectReference Include="..\Clipboard Watcher\Clipboard Watcher.csproj">
       <Project>{91feab57-9fb6-4444-aa1d-214391c3629e}</Project>
       <Name>Clipboard Watcher</Name>
     </ProjectReference>

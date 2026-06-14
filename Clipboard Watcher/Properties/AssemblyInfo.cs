@@ -1,16 +1,16 @@
-﻿using System.Reflection;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Clipboard Watcher")]
+[assembly: AssemblyTitle("Clipboard Manager")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Clipboard Watcher")]
-[assembly: AssemblyCopyright("Copyright ©  2026")]
+[assembly: AssemblyProduct("Clipboard Manager")]
+[assembly: AssemblyCopyright("Copyright ©  2026 Ali Moradzadeh")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("26169272-9ffe-469a-9497-41be3117cf02")]
+[assembly: Guid("91feab57-9fb6-4444-aa1d-214391c3629e")]
 
 // Version information for an assembly consists of the following four values:
 //

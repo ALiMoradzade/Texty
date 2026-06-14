@@ -34,7 +34,7 @@
     <ApplicationIcon>calendar_color_icon256.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Clipboard Manager, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Clipboard Manager, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Library\Clipboard Manager\Clipboard Manager\bin\Release\Clipboard Manager.dll</HintPath>
     </Reference>
@@ -73,12 +73,6 @@
     <EmbeddedResource Include="SolarHijriToGregorianForm.resx">
       <DependentUpon>SolarHijriToGregorianForm.cs</DependentUpon>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Clipboard Manager\Clipboard Watcher.csproj">
-      <Project>{91feab57-9fb6-4444-aa1d-214391c3629e}</Project>
-      <Name>Clipboard Watcher</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="calendar_color_icon256.ico" />
