@@ -21,13 +21,13 @@ namespace Texty.Clipboard_Watcher
         private void ClipboardWatcherForm_Load(object sender, EventArgs e)
         {
             timer1.Enabled = true;
+
+            Clipboard.Clear();
         }
 
-        private void buttonOK_Click(object sender, EventArgs e)
+        private void ClipboardWatcherForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             timer1.Enabled = false;
-
-            Close();
         }
 
         private void copyToolStripMenuItem_Click(object sender, EventArgs e)
@@ -65,6 +65,11 @@ namespace Texty.Clipboard_Watcher
             textBox1.RightToLeft = (RightToLeft)rightToLeftState;
             rightToLeftToolStripMenuItem.Checked = Convert.ToBoolean(rightToLeftState);
             contextMenuStrip1.RightToLeft = RightToLeft.No;
+        }
+
+        private void clearToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            textBox1.Clear();
         }
     }
 }

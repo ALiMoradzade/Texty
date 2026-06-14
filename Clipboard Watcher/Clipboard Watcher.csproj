@@ -34,7 +34,7 @@
     <ApplicationIcon>clipboard_color_icon256.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Clipboard Manager, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Clipboard Manager, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Library\Clipboard Manager\Clipboard Manager\bin\Release\Clipboard Manager.dll</HintPath>
     </Reference>
