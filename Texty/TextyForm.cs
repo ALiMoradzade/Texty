@@ -40,20 +40,19 @@ namespace Texty
 
             richTextBox1.AllowDrop = true;
 
-            EnableContextualEditing(false);
+            SetSelectionDependentContextualCommands(false);
+            SetNonSelectionDependentContextualCommands(false);
 
             EnableSingleCharEncoding(false);
             EnableMultipleCharEncoding(false);
         }
 
-        public void EnableContextualEditing(bool state)
+        public void SetSelectionDependentContextualCommands(bool state)
         {
             // Menu item
             cutToolStripMenuItem1.Enabled = state;
             copyToolStripMenuItem1.Enabled = state;
             deleteToolStripMenuItem1.Enabled = state;
-            findToolStripMenuItem.Enabled = state;
-            replaceToolStripMenuItem.Enabled= state;
 
             // Context menu strip
             cutToolStripMenuItem.Enabled = state;
@@ -61,6 +60,12 @@ namespace Texty
             deleteToolStripMenuItem.Enabled = state;
             normalizeToolStripMenuItem.Enabled = state;
             convertCaseToToolStripMenuItem.Enabled = state;
+        }
+
+        public void SetNonSelectionDependentContextualCommands(bool state)
+        {
+            findToolStripMenuItem.Enabled = state;
+            replaceToolStripMenuItem.Enabled= state;
         }
 
         #region Form Events
@@ -404,7 +409,6 @@ namespace Texty
         {
             richTextBox1.SelectionStart = startIndex;
             richTextBox1.SelectionLength = textLength;
-            richTextBox1.ScrollToCaret();
             richTextBox1.Focus();
         }
         public List<int> FindText(string text)
@@ -415,12 +419,10 @@ namespace Texty
             while (startIndex < richTextBox1.Text.Length)
             {
                 int foundIndex = richTextBox1.Text.IndexOf(text, startIndex, StringComparison.OrdinalIgnoreCase);
-                if (foundIndex > 0)
-                {
-                    foundIndexes.Add(foundIndex);
-                    startIndex += foundIndex + text.Length;
-                }
-                else break;
+                if (foundIndex == -1) break;
+             
+                foundIndexes.Add(foundIndex);
+                startIndex = foundIndex + text.Length;
             }
 
            return foundIndexes;
@@ -557,17 +559,17 @@ namespace Texty
         #endregion
 
         #region Status Srip Methods
-        private int CurrentCursorLine()
+        private int CaretLine()
         {
             return richTextBox1.GetLineFromCharIndex(richTextBox1.SelectionStart);
         }
 
-        private int CurrentCursorCharCount()
+        private int CaretCharCount()
         {
-            return richTextBox1.SelectionStart - richTextBox1.GetFirstCharIndexFromLine(CurrentCursorLine());
+            return richTextBox1.SelectionStart - richTextBox1.GetFirstCharIndexFromLine(CaretLine());
         }
 
-        private string CurrentCursorLength()
+        private string CursorLength()
         {
             if (richTextBox1.SelectionLength > 0)
             {
@@ -581,8 +583,8 @@ namespace Texty
 
         private void SetTextInfo()
         {
-            textCurrentLineAndChar.Text = $"Ln {CurrentCursorLine() + 1}, Char {CurrentCursorCharCount() + 1}";
-            textLengthOrCursorLength.Text = CurrentCursorLength();
+            textCurrentLineAndChar.Text = $"Ln {CaretLine() + 1}, Char {CaretCharCount() + 1}";
+            textLengthOrCursorLength.Text = CursorLength();
         }
 
         private void SetCharEncoding()
@@ -645,6 +647,9 @@ namespace Texty
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
+            if (IsTextEmpty()) SetNonSelectionDependentContextualCommands(false);
+            else SetNonSelectionDependentContextualCommands(true);
+
             if (enableTextChangeFlag)
             {
                 if (IsTextEmpty())
@@ -664,8 +669,8 @@ namespace Texty
         {
             SetTextInfo();
 
-            if (richTextBox1.SelectionLength > 1) EnableContextualEditing(true);
-            else EnableContextualEditing(false);
+            if (richTextBox1.SelectionLength > 1) SetSelectionDependentContextualCommands(true);
+            else SetSelectionDependentContextualCommands(false);
 
             // UTF-8, UTF-16, UTF-32 status bar
             if (richTextBox1.SelectionLength > 31 || richTextBox1.SelectionLength == 0)

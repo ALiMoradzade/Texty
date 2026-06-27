@@ -36,6 +36,9 @@ namespace Texty.Edit
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textBoxNew = new System.Windows.Forms.TextBox();
+            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.buttonClear = new System.Windows.Forms.Button();
@@ -45,9 +48,6 @@ namespace Texty.Edit
             this.labelResult = new System.Windows.Forms.Label();
             this.buttonFind = new System.Windows.Forms.Button();
             this.buttonReplace = new System.Windows.Forms.Button();
-            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
             this.SuspendLayout();
@@ -67,6 +67,7 @@ namespace Texty.Edit
             this.textBoxOld.ContextMenuStrip = this.contextMenuStrip1;
             this.textBoxOld.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxOld.Location = new System.Drawing.Point(80, 12);
+            this.textBoxOld.MaxLength = 30;
             this.textBoxOld.Name = "textBoxOld";
             this.textBoxOld.Size = new System.Drawing.Size(216, 22);
             this.textBoxOld.TabIndex = 2;
@@ -99,10 +100,33 @@ namespace Texty.Edit
             this.textBoxNew.ContextMenuStrip = this.contextMenuStrip2;
             this.textBoxNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxNew.Location = new System.Drawing.Point(80, 40);
+            this.textBoxNew.MaxLength = 30;
             this.textBoxNew.Name = "textBoxNew";
             this.textBoxNew.Size = new System.Drawing.Size(216, 22);
             this.textBoxNew.TabIndex = 3;
             this.textBoxNew.TextChanged += new System.EventHandler(this.textBoxes_TextChanged);
+            // 
+            // contextMenuStrip2
+            // 
+            this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1,
+            this.toolStripMenuItem2});
+            this.contextMenuStrip2.Name = "contextMenuStrip1";
+            this.contextMenuStrip2.Size = new System.Drawing.Size(103, 48);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(102, 22);
+            this.toolStripMenuItem1.Text = "Copy";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(102, 22);
+            this.toolStripMenuItem2.Text = "Paste";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // label1
             // 
@@ -209,28 +233,6 @@ namespace Texty.Edit
             this.buttonReplace.Text = "Repalce";
             this.buttonReplace.UseVisualStyleBackColor = false;
             this.buttonReplace.Click += new System.EventHandler(this.buttonReplace_Click);
-            // 
-            // contextMenuStrip2
-            // 
-            this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1,
-            this.toolStripMenuItem2});
-            this.contextMenuStrip2.Name = "contextMenuStrip1";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(103, 48);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(102, 22);
-            this.toolStripMenuItem1.Text = "Copy";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(102, 22);
-            this.toolStripMenuItem2.Text = "Paste";
-            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // ReplaceForm
             // 
