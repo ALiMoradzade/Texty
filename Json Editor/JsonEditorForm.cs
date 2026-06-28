@@ -21,6 +21,16 @@ namespace Json_Editor
             InitializeComponent();
         }
 
+        private void JsonEditorForm_Resize(object sender, EventArgs e)
+        {
+            int width = (Width - 15) / 2;
+            if (width > 0)
+            {
+                textBox1.Size = new Size(width, textBox1.Height);
+                treeView1.Size = new Size(width, textBox1.Height);
+            }
+        }
+
         #region Message Box
         private static DialogResult MessageBoxPropertyDoesntFound(string property)
         {
@@ -69,19 +79,19 @@ namespace Json_Editor
             return r;
         }
 
-        private static DialogResult MessageBoxJsonAlreadyIndented()
+        private static DialogResult MessageBoxJsonAlreadyBeautifyied()
         {
-            var r = MessageBox.Show("The JSON is already formatted",
-                                    "JSON Formatted",
+            var r = MessageBox.Show("The JSON is already beautified",
+                                    "JSON Beautified",
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Exclamation);
             return r;
         }
 
-        private static DialogResult MessageBoxJsonIndentedSuccessful()
+        private static DialogResult MessageBoxJsonBeautifiedSuccessful()
         {
-            var r = MessageBox.Show("The JSON was formatted successfully",
-                                    "JSON Formatted",
+            var r = MessageBox.Show("The JSON was beautified successfully",
+                                    "JSON Beautified",
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Information);
             return r;
@@ -89,8 +99,8 @@ namespace Json_Editor
 
         private static DialogResult MessageBoxJsonAlreadyMinified()
         {
-            var r = MessageBox.Show("The JSON is already formatted",
-                                    "JSON Formatted",
+            var r = MessageBox.Show("The JSON is already minified",
+                                    "JSON Minified",
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Exclamation);
             return r;
@@ -115,6 +125,11 @@ namespace Json_Editor
                 {
                     textBox1.Text = await streamReader.ReadToEndAsync();
                 }
+
+                JsonTreeConverter jsonTreeConverter = new JsonTreeConverter(textBox1.Text);
+
+                treeView1.Nodes.Clear();
+                treeView1.Nodes.Add(jsonTreeConverter.Result);
             }
         }
 
@@ -133,21 +148,21 @@ namespace Json_Editor
         #endregion
 
         #region Edit Tab
-        private void indentedJSONToolStripMenuItem_Click(object sender, EventArgs e)
+        private void beautifyJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBox1.Text)) return;
 
             JToken token = JToken.Parse(textBox1.Text);
-            string indented = token.ToString(Formatting.Indented);
+            string beautified = token.ToString(Formatting.Indented);
 
-            if (textBox1.Text == indented)
+            if (textBox1.Text == beautified)
             {
-                MessageBoxJsonAlreadyIndented();
+                MessageBoxJsonAlreadyBeautifyied();
                 return;
             }
 
-            textBox1.Text = indented;
-            MessageBoxJsonIndentedSuccessful();
+            textBox1.Text = beautified;
+            MessageBoxJsonBeautifiedSuccessful();
         }
 
         private void minifyJSONToolStripMenuItem_Click(object sender, EventArgs e)
@@ -210,9 +225,32 @@ namespace Json_Editor
         }
         #endregion
 
+        #region Right Click TextBox
         private void copyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             textBox1.Copy();
         }
+        #endregion
+
+        #region Right Click TextBox
+        private void reloadJSONTextToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            JsonTreeConverter jsonTreeConverter = new JsonTreeConverter(textBox1.Text);
+
+            treeView1.Nodes.Clear();
+            treeView1.Nodes.Add(jsonTreeConverter.Result);
+        }
+
+        private void collapseAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            treeView1.CollapseAll();
+        }
+
+        private void expandAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            treeView1.ExpandAll();
+        }
+        #endregion
+
     }
 }
